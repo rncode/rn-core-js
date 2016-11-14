@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "none",
+        "sourceMap": true,
+        "outFile": "./dist/rn.core.js",
+        "declaration": true
+    },
+    "include": [
+        "src/**/*.ts"
+    ]
+}
