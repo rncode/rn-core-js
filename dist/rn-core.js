@@ -122,28 +122,32 @@ var Rn;
 (function (Rn) {
     var Core;
     (function (Core) {
-        var Storage = (function () {
-            function Storage() {
-                return this;
-            }
-            Storage.prototype.getItem = function (key) {
-                return localStorage.getItem(key);
-            };
-            Storage.prototype.setItem = function (key, data) {
-                localStorage.setItem(key, data);
-            };
-            Storage.prototype.setJson = function (key, data) {
-                localStorage.setItem(key, JSON.stringify(data));
-            };
-            Storage.prototype.getJson = function (key) {
-                return JSON.parse(localStorage.getItem(key));
-            };
-            Storage.prototype.hasItem = function (key) {
-                return localStorage.hasOwnProperty(key);
-            };
-            return Storage;
-        }());
-        Core.Storage = Storage;
+        var Utils;
+        (function (Utils) {
+            var Storage = (function () {
+                function Storage() {
+                    return this;
+                }
+                Storage.prototype.getItem = function (key) {
+                    return localStorage.getItem(key);
+                };
+                Storage.prototype.setItem = function (key, data) {
+                    localStorage.setItem(key, data);
+                };
+                Storage.prototype.setJson = function (key, data) {
+                    localStorage.setItem(key, JSON.stringify(data));
+                };
+                Storage.prototype.getJson = function (key) {
+                    return JSON.parse(localStorage.getItem(key));
+                };
+                Storage.prototype.hasItem = function (key) {
+                    return localStorage.hasOwnProperty(key);
+                };
+                return Storage;
+            }());
+            Utils.Storage = Storage;
+            Utils.storage = new Storage();
+        })(Utils = Core.Utils || (Core.Utils = {}));
     })(Core = Rn.Core || (Rn.Core = {}));
 })(Rn || (Rn = {}));
-//# sourceMappingURL=rn.core.js.map
+//# sourceMappingURL=rn-core.js.map

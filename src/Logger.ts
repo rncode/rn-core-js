@@ -8,7 +8,19 @@ namespace Rn.Core.Logging {
         FATAL = 6
     }
 
-    export class Logger {
+    export interface ILogger {
+        enableLogger(): void;
+        disableLogger(): void;
+        setLoggingSeverity(severity: LogSeverity): void;
+        trace(source: string, message: string): void;
+        debug(source: string, message: string): void;
+        info(source: string, message: string): void;
+        warn(source: string, message: string): void;
+        error(source: string, message: string): void;
+        fatal(source: string, message: string): void;
+    }
+
+    export class Logger implements ILogger {
         private _enabled: boolean = true;
         private _severity: LogSeverity = LogSeverity.WARN;
 
@@ -19,14 +31,14 @@ namespace Rn.Core.Logging {
         /**
          * Enables the logger
          */
-        public enableLogger() {
+        public enableLogger(): void {
             this._enabled = true;
         }
 
         /**
          * Disables the logger
          */
-        public disableLogger() {
+        public disableLogger(): void {
             this._enabled = false;
         }
 
@@ -34,7 +46,7 @@ namespace Rn.Core.Logging {
          * Set the logging severity for this logger instance - only messages matching the given severity (or greater) will be logged
          * @param {LogSeverity} severity - desired logging severity
          */
-        public setLoggingSeverity(severity: LogSeverity) {
+        public setLoggingSeverity(severity: LogSeverity): void {
             this._severity = severity;
         }
 
@@ -43,7 +55,7 @@ namespace Rn.Core.Logging {
          * @param {string} source - the source of the message (this canbe used for filtering out noise)
          * @param {string} message - the message you are logging
          */
-        public trace(source: string, message: string) {
+        public trace(source: string, message: string): void {
             if (!this._enabled || !this.canLog(LogSeverity.TRACE)) {
                 return;
             }
@@ -56,7 +68,7 @@ namespace Rn.Core.Logging {
          * @param {string} source - the source of the message (this canbe used for filtering out noise)
          * @param {string} message - the message you are logging
          */
-        public debug(source: string, message: string) {
+        public debug(source: string, message: string): void {
             if (!this._enabled || !this.canLog(LogSeverity.DEBUG)) {
                 return;
             }
@@ -69,7 +81,7 @@ namespace Rn.Core.Logging {
          * @param {string} source - the source of the message (this canbe used for filtering out noise)
          * @param {string} message - the message you are logging
          */
-        public info(source: string, message: string) {
+        public info(source: string, message: string): void {
             if (!this._enabled || !this.canLog(LogSeverity.INFO)) {
                 return;
             }
@@ -82,7 +94,7 @@ namespace Rn.Core.Logging {
          * @param {string} source - the source of the message (this canbe used for filtering out noise)
          * @param {string} message - the message you are logging
          */
-        public warn(source: string, message: string) {
+        public warn(source: string, message: string): void {
             if (!this._enabled || !this.canLog(LogSeverity.WARN)) {
                 return;
             }
@@ -95,7 +107,7 @@ namespace Rn.Core.Logging {
          * @param {string} source - the source of the message (this canbe used for filtering out noise)
          * @param {string} message - the message you are logging
          */
-        public error(source: string, message: string) {
+        public error(source: string, message: string): void {
             if (!this._enabled || !this.canLog(LogSeverity.ERROR)) {
                 return;
             }
@@ -108,7 +120,7 @@ namespace Rn.Core.Logging {
          * @param {string} source - the source of the message (this canbe used for filtering out noise)
          * @param {string} message - the message you are logging
          */
-        public fatal(source: string, message: string) {
+        public fatal(source: string, message: string): void {
             if (!this._enabled || !this.canLog(LogSeverity.FATAL)) {
                 return;
             }

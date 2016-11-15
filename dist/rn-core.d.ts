@@ -1,12 +1,3 @@
-declare namespace Rn.Core {
-    interface IStorage {
-        getItem(key: string): any;
-        setItem(key: string, data: string): void;
-        setJson(key: string, data: any): void;
-        getJson(key: string): any;
-        hasItem(key: string): boolean;
-    }
-}
 declare namespace Rn.Core.Logging {
     enum LogSeverity {
         TRACE = 1,
@@ -16,7 +7,18 @@ declare namespace Rn.Core.Logging {
         ERROR = 5,
         FATAL = 6,
     }
-    class Logger {
+    interface ILogger {
+        enableLogger(): void;
+        disableLogger(): void;
+        setLoggingSeverity(severity: LogSeverity): void;
+        trace(source: string, message: string): void;
+        debug(source: string, message: string): void;
+        info(source: string, message: string): void;
+        warn(source: string, message: string): void;
+        error(source: string, message: string): void;
+        fatal(source: string, message: string): void;
+    }
+    class Logger implements ILogger {
         private _enabled;
         private _severity;
         constructor();
@@ -73,7 +75,14 @@ declare namespace Rn.Core.Logging {
     }
     let logger: Logger;
 }
-declare namespace Rn.Core {
+declare namespace Rn.Core.Utils {
+    interface IStorage {
+        getItem(key: string): any;
+        setItem(key: string, data: string): void;
+        setJson(key: string, data: any): void;
+        getJson(key: string): any;
+        hasItem(key: string): boolean;
+    }
     class Storage implements IStorage {
         constructor();
         getItem(key: string): any;
@@ -82,4 +91,5 @@ declare namespace Rn.Core {
         getJson(key: string): any;
         hasItem(key: string): boolean;
     }
+    let storage: IStorage;
 }

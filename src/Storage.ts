@@ -1,4 +1,12 @@
-namespace Rn.Core {
+namespace Rn.Core.Utils {
+    export interface IStorage {
+        getItem(key: string): any;
+        setItem(key: string, data: string): void;
+        setJson(key: string, data: any): void;
+        getJson(key: string): any;
+        hasItem(key: string): boolean;
+    }
+
     export class Storage implements IStorage {
         public constructor() {
             return this;
@@ -24,4 +32,6 @@ namespace Rn.Core {
             return localStorage.hasOwnProperty(key);
         }
     }
+
+    export let storage: IStorage = new Storage();
 }
