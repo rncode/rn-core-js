@@ -1,0 +1,19 @@
+{
+  "name": "rn-core-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rncode/rn-core-js.git"
+  },
+  "author": "Richard Niemand",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rncode/rn-core-js/issues"
+  },
+  "homepage": "https://github.com/rncode/rn-core-js#readme"
+}
